@@ -1,0 +1,19 @@
+[package]
+name = "stringz-macros"
+version = "0.1.0"
+description = "Procedural macros implementation of stringz"
+authors.workspace = true
+license.workspace = true
+readme = "../stringz/README.md"
+edition.workspace = true
+documentation = "https://docs.rs/stringz"
+repository.workspace = true
+keywords = ["string", "generic"]
+categories = ["data-structures", "development-tools::procedural-macro-helpers"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0"
+syn = "2.0"

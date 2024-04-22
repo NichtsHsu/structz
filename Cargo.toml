@@ -1,0 +1,23 @@
+[workspace]
+members = ["stringz", "stringz-macros", "structz-macros"]
+
+[workspace.package]
+authors = ["Nichts Hsu <NichtsVonChaos@gmail.com>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+edition = "2021"
+repository = "https://github.com/NichtsHsu/structz"
+
+[package]
+name = "structz"
+version = "0.1.0"
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+readme.workspace = true
+repository.workspace = true
+
+[dependencies]
+tuplez = "0.8.1"
+stringz = { version = "0.1.0", path = "stringz" }
+structz-macros = { version = "0.1.0", path = "structz-macros" }
