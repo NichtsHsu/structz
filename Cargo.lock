@@ -46,17 +46,10 @@ dependencies = [
 name = "structz"
 version = "0.1.0"
 dependencies = [
- "stringz",
- "structz-macros",
- "tuplez",
-]
-
-[[package]]
-name = "structz-macros"
-version = "0.1.0"
-dependencies = [
  "quote",
+ "stringz",
  "syn",
+ "tuplez",
 ]
 
 [[package]]
@@ -72,9 +65,9 @@ dependencies = [
 
 [[package]]
 name = "tuplez"
-version = "0.8.1"
+version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7de8fc6437f8b1647cee7613a029f80e27105ae6fecafc9f8a33f5e9fbb3870"
+checksum = "abaa5a9423fbb72ab8c1f91060fd5275a135cb6a405ebd11b7bfbfb0271c5871"
 dependencies = [
  "paste",
  "tuplez-macros",
@@ -82,9 +75,9 @@ dependencies = [
 
 [[package]]
 name = "tuplez-macros"
-version = "0.5.1"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c1fb7ddd809443f1bc0d643bd86fe390c35c2b6072ce2d3fe35b86366b7bc34"
+checksum = "f87132581eb0b422254492f6e3ac8a0e1abc9566154bee60944309fba1106120"
 dependencies = [
  "quote",
  "syn",

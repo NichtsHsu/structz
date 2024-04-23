@@ -1,5 +1,5 @@
 [workspace]
-members = ["stringz", "stringz-macros", "structz-macros"]
+members = ["stringz", "stringz-macros"]
 
 [workspace.package]
 authors = ["Nichts Hsu <NichtsVonChaos@gmail.com>"]
@@ -11,13 +11,22 @@ repository = "https://github.com/NichtsHsu/structz"
 [package]
 name = "structz"
 version = "0.1.0"
+description = "Anonymous struct implementation in rust"
 authors.workspace = true
 license.workspace = true
 edition.workspace = true
 readme.workspace = true
 repository.workspace = true
+keywords = ["struct", "named-arguments"]
+categories = ["data-structures", "rust-patterns"]
+
+[lib]
+proc-macro = true
 
 [dependencies]
-tuplez = "0.8.1"
+syn = "2.0"
+quote = "1.0"
 stringz = { version = "0.1.0", path = "stringz" }
-structz-macros = { version = "0.1.0", path = "structz-macros" }
+
+[dev-dependencies]
+tuplez = "0.8.2"
