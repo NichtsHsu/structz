@@ -28,7 +28,7 @@ dependencies = [
 
 [[package]]
 name = "stringz"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "stringz-macros",
  "tuplez",
@@ -36,7 +36,7 @@ dependencies = [
 
 [[package]]
 name = "stringz-macros"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "quote",
  "syn",
@@ -44,7 +44,7 @@ dependencies = [
 
 [[package]]
 name = "structz"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "quote",
  "stringz",

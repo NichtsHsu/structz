@@ -1,6 +1,6 @@
 [package]
 name = "stringz-macros"
-version = "0.1.0"
+version = "0.1.1"
 description = "Procedural macros implementation of stringz"
 authors.workspace = true
 license.workspace = true
@@ -16,4 +16,4 @@ proc-macro = true
 
 [dependencies]
 quote = "1.0"
-syn = "2.0"
+syn = { version = "2.0", features = ["full"] }

@@ -8,7 +8,7 @@ Anonymous struct implementation in rust.
 
 Basically, structz only has procedural macros, which references types from
 [tuplez](https://docs.rs/tuplez) and [stringz](https://docs.rs/stringz),
-so you need to import them all:
+so import them all:
 
 ```bash
 cargo add structz tuplez stringz
