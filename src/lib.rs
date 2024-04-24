@@ -162,12 +162,12 @@ pub fn stru(input: TokenStream) -> TokenStream {
     let fields: Vec<_> = input
         .into_iter()
         .map(|(ident, expr)| match expr {
-            Some(expr) => quote! { (<stringz::ident!(#ident)>::default(), #expr) },
-            None => quote! { (<stringz::ident!(#ident)>::default(), #ident) },
+            Some(expr) => quote! { (<::stringz::ident!(#ident)>::default(), #expr) },
+            None => quote! { (<::stringz::ident!(#ident)>::default(), #ident) },
         })
         .collect();
     quote! {
-        tuplez::tuple!(#(#fields),*)
+        ::tuplez::tuple!(#(#fields),*)
     }
     .into()
 }
@@ -200,10 +200,10 @@ pub fn stru_t(input: TokenStream) -> TokenStream {
     let AnonymousStructType(input) = parse_macro_input!(input as AnonymousStructType);
     let fields: Vec<_> = input
         .into_iter()
-        .map(|(ident, ty)| quote! { (stringz::ident!(#ident), #ty) })
+        .map(|(ident, ty)| quote! { (::stringz::ident!(#ident), #ty) })
         .collect();
     quote! {
-        tuplez::tuple_t!(#(#fields),*)
+        ::tuplez::tuple_t!(#(#fields),*)
     }
     .into()
 }
@@ -259,22 +259,22 @@ pub fn field(input: TokenStream) -> TokenStream {
     match flag {
         RefFlag::None => quote! {
             {
-                use tuplez::TupleLike;
-                let ((_, field), _): ((stringz::ident!(#field), _), _) = (#value).take();
+                use ::tuplez::TupleLike;
+                let ((_, field), _): ((::stringz::ident!(#field), _), _) = (#value).take();
                 field
             }
         },
         RefFlag::Ref => quote! {
             {
-                use tuplez::TupleLike;
-                let (_, field): &(stringz::ident!(#field), _) = (#value).get_ref();
+                use ::tuplez::TupleLike;
+                let (_, field): &(::stringz::ident!(#field), _) = (#value).get_ref();
                 field
             }
         },
         RefFlag::Mut => quote! {
             {
-                use tuplez::TupleLike;
-                let (_, field): &mut (stringz::ident!(#field), _) = (#value).get_mut();
+                use ::tuplez::TupleLike;
+                let (_, field): &mut (::stringz::ident!(#field), _) = (#value).get_mut();
                 field
             }
         },
@@ -300,8 +300,8 @@ pub fn as_ref(input: TokenStream) -> TokenStream {
     let ident = parse_macro_input!(input as syn::Ident);
     quote! {
         {
-            use tuplez::TupleLike;
-            #ident.as_ref().foreach(tuplez::mapper! {
+            use ::tuplez::TupleLike;
+            #ident.as_ref().foreach(::tuplez::mapper! {
                 <'a, T: Copy, U> | x: &'a (T, U) | -> (T, &'a U) {
                     (x.0, &x.1)
                 }
@@ -330,8 +330,8 @@ pub fn as_mut(input: TokenStream) -> TokenStream {
     let ident = parse_macro_input!(input as syn::Ident);
     quote! {
         {
-            use tuplez::TupleLike;
-            #ident.as_mut().foreach(tuplez::mapper! {
+            use ::tuplez::TupleLike;
+            #ident.as_mut().foreach(::tuplez::mapper! {
                 <'a, T: Copy, U> | x: &'a mut (T, U) | -> (T, &'a mut U) {
                     (x.0, &mut x.1)
                 }
@@ -417,12 +417,12 @@ pub fn named_args(_: TokenStream, item: TokenStream) -> TokenStream {
         let ident = ident.ident;
         unpack.push((
             parse_quote! { #ident },
-            parse_quote! { stringz::ident!(#ident) },
+            parse_quote! { ::stringz::ident!(#ident) },
         ))
     }
     let (pat, ident_tys): (Vec<syn::Pat>, Vec<syn::Type>) = unpack.into_iter().unzip();
-    let pat: syn::Pat = parse_quote! { tuplez::tuple_pat!( #( (_, #pat) ),* )};
-    let ident_tys: syn::Type = parse_quote! { tuplez::tuple_t!( #( (#ident_tys, #tys) ),* )};
+    let pat: syn::Pat = parse_quote! { ::tuplez::tuple_pat!( #( (_, #pat) ),* )};
+    let ident_tys: syn::Type = parse_quote! { ::tuplez::tuple_t!( #( (#ident_tys, #tys) ),* )};
     let unpack: syn::Stmt = parse_quote! { let #pat: #ident_tys = structz_s; };
     input.block.stmts.insert(0, unpack);
     quote!(#input).into()

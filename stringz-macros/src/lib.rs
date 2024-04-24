@@ -7,9 +7,9 @@ pub fn ident(input: TokenStream) -> TokenStream {
     let name = name.to_string();
     let name: Vec<_> = name
         .chars()
-        .map(|ch| quote!( stringz::Character<#ch> ))
+        .map(|ch| quote!( ::stringz::Character<#ch> ))
         .collect();
-    quote!(tuplez::tuple_t![ #( #name ),* ]).into()
+    quote!(::tuplez::tuple_t![ #( #name ),* ]).into()
 }
 
 #[proc_macro]
@@ -18,7 +18,7 @@ pub fn string(input: TokenStream) -> TokenStream {
     let name = name.value();
     let name: Vec<_> = name
         .chars()
-        .map(|ch| quote!( stringz::Character<#ch> ))
+        .map(|ch| quote!( ::stringz::Character<#ch> ))
         .collect();
-    quote!(tuplez::tuple_t![ #( #name ),* ]).into()
+    quote!(::tuplez::tuple_t![ #( #name ),* ]).into()
 }
