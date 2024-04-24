@@ -16,7 +16,7 @@ impl Parse for AnonymousStruct {
                 break;
             }
             let ident: Ident = input.parse()?;
-            if fields.iter().find(|(i, _)| i == &ident).is_some() {
+            if fields.iter().any(|(i, _)| i == &ident) {
                 return Err(syn::Error::new(ident.span(), "field already defined"));
             }
             if input.is_empty() {
@@ -55,7 +55,7 @@ impl Parse for AnonymousStructType {
                 break;
             }
             let ident: Ident = input.parse()?;
-            if fields.iter().find(|(i, _)| i == &ident).is_some() {
+            if fields.iter().any(|(i, _)| i == &ident) {
                 return Err(syn::Error::new(ident.span(), "field already defined"));
             }
             let _: Token![:] = input.parse()?;
