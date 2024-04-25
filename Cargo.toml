@@ -10,13 +10,14 @@ repository = "https://github.com/NichtsHsu/structz"
 
 [package]
 name = "structz"
-version = "0.2.3"
+version = "0.2.4"
 description = "Anonymous struct implementation in rust"
 authors.workspace = true
 license.workspace = true
 edition.workspace = true
 readme.workspace = true
 repository.workspace = true
+documentation = "https://docs.rs/structz"
 keywords = ["struct", "named-arguments"]
 categories = ["data-structures", "rust-patterns"]
 
