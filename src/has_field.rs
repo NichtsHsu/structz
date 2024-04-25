@@ -8,7 +8,7 @@ use tuplez::search::Search;
 /// * `Field`: Typed field name, see [stringz::ident!].
 /// * `T`: The type of data carried by the field.
 /// * `R`: Type used to indicate the position of the field in the struct.
-/// Usually automatically deduced by Rust.
+/// Usually automatically inferred by Rust.
 /// 
 /// # Example
 /// 

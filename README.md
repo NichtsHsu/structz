@@ -97,7 +97,7 @@ use stringz::ident;
 use structz::*;
 
 // `R1` and `R2` are "magic", used to indicate the position of the field in the structs,
-// and these magic generic types will be automatically deduced by Rust.
+// and these magic generic types will be automatically inferred by Rust.
 // You should introduce a magic generic type for each field.
 fn print_name_id<T, R1, R2>(any: &T)
 where
