@@ -4,6 +4,15 @@ Anonymous struct implementation in rust.
 
 ## Overview
 
+### Install
+
+Basically, structz just defines macros, and uses types from [tuplez] and [stringz].
+Therefore, add them all:
+
+```bash
+cargo add tuplez stringz structz
+```
+
 ### Create & access
 
 ```rust
