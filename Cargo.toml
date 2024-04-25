@@ -10,7 +10,7 @@ repository = "https://github.com/NichtsHsu/structz"
 
 [package]
 name = "structz"
-version = "0.2.1"
+version = "0.2.2"
 description = "Anonymous struct implementation in rust"
 authors.workspace = true
 license.workspace = true
