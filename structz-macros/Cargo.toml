@@ -1,11 +1,15 @@
 [package]
 name = "structz-macros"
 version = "0.1.0"
+description = "Procedural macros implementation of structz"
 authors.workspace = true
 license.workspace = true
 readme.workspace = true
 edition.workspace = true
+documentation = "https://docs.rs/structz"
 repository.workspace = true
+keywords = ["struct", "named-arguments"]
+categories = ["data-structures", "rust-patterns", "development-tools::procedural-macro-helpers"]
 
 [lib]
 proc-macro = true
