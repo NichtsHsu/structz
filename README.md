@@ -4,16 +4,6 @@ Anonymous struct implementation in rust.
 
 ## Overview
 
-### Import
-
-Basically, structz only has procedural macros, which references types from
-[tuplez](https://docs.rs/tuplez) and [stringz](https://docs.rs/stringz),
-so import them all:
-
-```bash
-cargo add structz tuplez stringz
-```
-
 ### Create & access
 
 ```rust
@@ -89,6 +79,40 @@ let person = stru! {
     age: 30,
 };
 print_person(person);
+```
+
+### As generic type
+
+```rust
+use stringz::ident;
+use structz::*;
+
+// `R1` and `R2` are "magic", used to indicate the position of the field in the structs,
+// and these magic generic types will be automatically deduced by Rust.
+// You should introduce a magic generic type for each field.
+fn print_name_id<T, R1, R2>(any: &T)
+where
+    T: HasField<ident!(name), &'static str, R1>,
+    T: HasField<ident!(id), usize, R2>,
+{
+    println!("{}", field!(&*any.name));
+    println!("{}", field!(&*any.id));
+}
+
+let person = stru! {
+    name: "John",
+    age: 15,
+    id: 1006,
+    jobs: "Programmer",
+};
+let earth = stru! {
+    name: "Earth",
+    id: 3,
+    galaxy: "Sol",
+    satellites: vec!["Moon"],
+};
+print_name_id(&person);
+print_name_id(&earth);
 ```
 
 ## Details

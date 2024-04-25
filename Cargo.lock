@@ -46,10 +46,17 @@ dependencies = [
 name = "structz"
 version = "0.1.2"
 dependencies = [
- "quote",
  "stringz",
- "syn",
+ "structz-macros",
  "tuplez",
+]
+
+[[package]]
+name = "structz-macros"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
 ]
 
 [[package]]

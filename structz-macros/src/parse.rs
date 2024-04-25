@@ -1,11 +1,5 @@
 use syn::{parse::Parse, Expr, Ident, Token, Type};
 
-pub enum RefFlag {
-    None,
-    Ref,
-    Mut,
-}
-
 pub struct AnonymousStruct(pub Vec<(Ident, Option<Expr>)>);
 
 impl Parse for AnonymousStruct {
@@ -69,27 +63,5 @@ impl Parse for AnonymousStructType {
 
         fields.sort_by(|x, y| x.0.cmp(&y.0));
         Ok(Self(fields))
-    }
-}
-
-pub struct GetField(pub RefFlag, pub Ident, pub Ident);
-
-impl Parse for GetField {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
-        let mut flag = RefFlag::None;
-        let lookahead = input.lookahead1();
-        if lookahead.peek(Token![&]) {
-            let _: Token![&] = input.parse()?;
-            flag = RefFlag::Ref;
-            let lookahead = input.lookahead1();
-            if lookahead.peek(Token![mut]) {
-                let _: Token![mut] = input.parse()?;
-                flag = RefFlag::Mut;
-            }
-        }
-        let value = input.parse()?;
-        let _: Token![.] = input.parse()?;
-        let field = input.parse()?;
-        Ok(Self(flag, value, field))
     }
 }

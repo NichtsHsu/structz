@@ -1,5 +1,5 @@
 [workspace]
-members = ["stringz", "stringz-macros"]
+members = ["stringz", "stringz-macros", "structz-macros"]
 
 [workspace.package]
 authors = ["Nichts Hsu <NichtsVonChaos@gmail.com>"]
@@ -20,13 +20,7 @@ repository.workspace = true
 keywords = ["struct", "named-arguments"]
 categories = ["data-structures", "rust-patterns"]
 
-[lib]
-proc-macro = true
-
 [dependencies]
-syn = { version = "2.0", features = ["full"] }
-quote = "1.0"
-
-[dev-dependencies]
 tuplez = "0.8.2"
 stringz = { version = "0.1.2", path = "stringz" }
+structz-macros = { version = "0.1.0", path = "structz-macros" }
