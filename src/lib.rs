@@ -81,7 +81,7 @@
 //!
 //! ## As generic type
 //!
-//!```
+//! ```
 //! use stringz::ident;
 //! use structz::*;
 //!
