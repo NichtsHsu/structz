@@ -10,7 +10,7 @@ repository = "https://github.com/NichtsHsu/structz"
 
 [package]
 name = "structz"
-version = "0.2.6"
+version = "0.3.0"
 description = "Anonymous struct implementation in rust"
 authors.workspace = true
 license.workspace = true
@@ -22,6 +22,6 @@ keywords = ["struct", "named-arguments"]
 categories = ["data-structures", "rust-patterns"]
 
 [dependencies]
-tuplez = "0.8.2"
-stringz = { version = "0.1.2", path = "stringz" }
+tuplez = "0.9.0"
+stringz = { version = "0.2.0", path = "stringz" }
 structz-macros = { version = "0.1.0", path = "structz-macros" }

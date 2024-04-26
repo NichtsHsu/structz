@@ -1,6 +1,6 @@
 [package]
 name = "stringz"
-version = "0.1.2"
+version = "0.2.0"
 description = "A way to use strings in generic paramters"
 authors.workspace = true
 license.workspace = true
@@ -13,4 +13,4 @@ categories = ["data-structures"]
 
 [dependencies]
 stringz-macros = { version = "0.1.2", path = "../stringz-macros" }
-tuplez = { version = "0.8.2", default-features = false }
+tuplez = { version = "0.9.0", default-features = false }
