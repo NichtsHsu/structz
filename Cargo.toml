@@ -18,7 +18,7 @@ edition.workspace = true
 readme.workspace = true
 repository.workspace = true
 documentation = "https://docs.rs/structz"
-keywords = ["struct", "named-arguments"]
+keywords = ["struct", "anonymous-struct", "named-tuple", "named-arguments"]
 categories = ["data-structures", "rust-patterns"]
 
 [dependencies]

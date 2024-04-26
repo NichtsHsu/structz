@@ -8,8 +8,12 @@ readme.workspace = true
 edition.workspace = true
 documentation = "https://docs.rs/structz"
 repository.workspace = true
-keywords = ["struct", "named-arguments"]
-categories = ["data-structures", "rust-patterns", "development-tools::procedural-macro-helpers"]
+keywords = ["struct", "anonymous-struct", "named-tuple", "named-arguments"]
+categories = [
+    "data-structures",
+    "rust-patterns",
+    "development-tools::procedural-macro-helpers",
+]
 
 [lib]
 proc-macro = true

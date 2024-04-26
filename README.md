@@ -90,6 +90,41 @@ let person = stru! {
 print_person(person);
 ```
 
+With the [`subset()`](https://docs.rs/tuplez/latest/tuplez/trait.TupleLike.html#method.subset) method by [tuplez](https://docs.rs/tuplez),
+you can get a subset of the anonymous struct:
+
+```rust
+use structz::*;
+use tuplez::TupleLike;
+
+#[named_args]
+fn print_person(name: &str, age: u8) {
+    println!("{} is {} years old", name, age);
+}
+
+let alice = stru! {
+    jobs: "programmer",
+    name: "Alice",
+    age: 30,
+    children: vec!["Bob"],
+};
+print_person(alice.subset());
+
+let bob = stru! {
+    name: "Bob",
+    parent: vec!["Alice", "John"],
+    age: 7,
+    grade: 1,
+};
+print_person(bob.subset());
+
+let empty = stru! {
+    name: "**Empty**",
+    age: 0,
+};
+print_person(empty.subset());   // Of course it is itself a subset of
+```
+
 ### As generic type
 
 ```rust

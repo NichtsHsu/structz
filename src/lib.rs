@@ -87,10 +87,10 @@
 //! };
 //! print_person(person);
 //! ```
-//! 
+//!
 //! With the [`subset()`](tuplez::TupleLike::subset()) method by [tuplez](https://docs.rs/tuplez),
 //! you can get a subset of the anonymous struct:
-//! 
+//!
 //! ```
 //! use structz::*;
 //! use tuplez::TupleLike;
@@ -107,7 +107,7 @@
 //!     children: vec!["Bob"],
 //! };
 //! print_person(alice.subset());
-//! 
+//!
 //! let bob = stru! {
 //!     name: "Bob",
 //!     parent: vec!["Alice", "John"],
@@ -115,7 +115,7 @@
 //!     grade: 1,
 //! };
 //! print_person(bob.subset());
-//! 
+//!
 //! let empty = stru! {
 //!     name: "**Empty**",
 //!     age: 0,
