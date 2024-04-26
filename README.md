@@ -122,7 +122,7 @@ let empty = stru! {
     name: "**Empty**",
     age: 0,
 };
-print_person(empty.subset());   // Of course it is itself a subset of
+print_person(empty.subset());   // Of course it is a subset of itself
 ```
 
 ### As generic type
