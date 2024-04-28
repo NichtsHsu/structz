@@ -55,7 +55,7 @@ where
     }
 }
 
-/// Helper class used for [`field!`] macro.
+/// Helper trait used for [`field!`] macro.
 #[doc(hidden)]
 pub trait __GetFieldHelper {
     #[doc(hidden)]
