@@ -137,8 +137,8 @@
 //!     T: HasField<ident!(name), &'static str, R1>,
 //!     T: HasField<ident!(id), usize, R2>,
 //! {
-//!     println!("{}", field!(&*any.name));
-//!     println!("{}", field!(&*any.id));
+//!     println!("{}", field!(&any.name));
+//!     println!("{}", field!(&any.id));
 //! }
 //!
 //! let person = stru! {

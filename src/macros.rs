@@ -48,24 +48,14 @@ macro_rules! field {
     ($s:ident . $f:ident) => {
         ::structz::HasField::<::stringz::ident!($f), _, _>::take_field($s)
     };
-    (& $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field(&$s)
-    };
-    (&* $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field(&*$s)
-    };
-    (&** $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field(&**$s)
-    };
-    (&mut $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field_mut(&mut $s)
-    };
-    (&mut * $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field_mut(&mut * $s)
-    };
-    (&mut ** $s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::get_field_mut(&mut ** $s)
-    };
+    (& $s:ident . $f:ident) => {{
+        use ::structz::__GetFieldHelper;
+        $s.__get_field_helper::<::stringz::ident!($f), _, _>()
+    }};
+    (&mut $s:ident . $f:ident) => {{
+        use ::structz::__GetFieldHelper;
+        $s.__get_field_mut_helper::<::stringz::ident!($f), _, _>()
+    }};
 }
 
 /// Obtain a new struct, each field is an immutable reference to the corresponding field of the input struct.
