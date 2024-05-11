@@ -88,8 +88,8 @@
 //! print_person(person);
 //! ```
 //!
-//! With the [`subset()`](tuplez::TupleLike::subset()) method by [tuplez](https://docs.rs/tuplez),
-//! you can get a subset of the anonymous struct:
+//! With the [`subseq()`](tuplez::TupleLike::subseq()) method by [tuplez](https://docs.rs/tuplez),
+//! you can get a sub-struct of the anonymous struct:
 //!
 //! ```
 //! use structz::*;
@@ -106,7 +106,7 @@
 //!     age: 30,
 //!     children: vec!["Bob"],
 //! };
-//! print_person(alice.subset());
+//! print_person(alice.subseq());
 //!
 //! let bob = stru! {
 //!     name: "Bob",
@@ -114,13 +114,13 @@
 //!     age: 7,
 //!     grade: 1,
 //! };
-//! print_person(bob.subset());
+//! print_person(bob.subseq());
 //!
 //! let empty = stru! {
 //!     name: "**Empty**",
 //!     age: 0,
 //! };
-//! print_person(empty.subset());   // Of course it is a subset of itself
+//! print_person(empty.subseq());   // Of course it is a sub-struct of itself
 //! ```
 //!
 //! ## As generic type
