@@ -27,6 +27,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde"
+version = "1.0.202"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "226b61a0d411b2ba5ff6d7f73a476ac4f8bb900373459cd00fab8512828ba395"
+dependencies = [
+ "serde_derive",
+]
+
+[[package]]
+name = "serde_derive"
+version = "1.0.202"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6048858004bcff69094cd972ed40a32500f153bd3be9f716b2eed2e8217c4838"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "stringz"
 version = "0.3.0"
 dependencies = [
@@ -72,20 +92,22 @@ dependencies = [
 
 [[package]]
 name = "tuplez"
-version = "0.14.0"
+version = "0.14.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd8011578e3d656ea393c69048c57648eca9a3b8bc0e23a1bf8051bcd95f797a"
+checksum = "7de19247d4b5e9950335eff7ab9c948b96f349e23004df21a0c81726c5e856c0"
 dependencies = [
  "paste",
+ "serde",
  "tuplez-macros",
 ]
 
 [[package]]
 name = "tuplez-macros"
-version = "0.6.0"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "854c4273d8abcb93c594b9f85f28c7943973537be389d6ed878f819783ac11b6"
+checksum = "7d680b2553893175ade7356efd8b4faffd0c21d845a12bb603557108c8f9db31"
 dependencies = [
+ "proc-macro2",
  "quote",
  "syn",
 ]

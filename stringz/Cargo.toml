@@ -8,8 +8,13 @@ readme = "README.md"
 edition.workspace = true
 documentation = "https://docs.rs/stringz"
 repository.workspace = true
-keywords = ["string", "generic"]
-categories = ["data-structures"]
+keywords = ["string", "generic", "no-std"]
+categories = ["data-structures", "no-std", "no-std::no-alloc"]
+
+[features]
+default = ["std"]
+std = []
+alloc = []
 
 [dependencies]
 stringz-macros = { version = "0.1.2", path = "../stringz-macros" }

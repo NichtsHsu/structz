@@ -18,10 +18,15 @@ edition.workspace = true
 readme.workspace = true
 repository.workspace = true
 documentation = "https://docs.rs/structz"
-keywords = ["struct", "anonymous-struct", "named-tuple", "named-arguments"]
-categories = ["data-structures", "rust-patterns"]
+keywords = ["struct", "anonymous", "named-tuple", "named-arguments", "no-std"]
+categories = ["data-structures", "rust-patterns", "no-std", "no-std::no-alloc"]
+
+[features]
+default = []
+std = ["tuplez/std", "stringz/std"]
+alloc = ["tuplez/alloc", "stringz/alloc"]
 
 [dependencies]
-tuplez = ">=0.10.0"
-stringz = { version = ">=0.1.0", path = "stringz" }
+tuplez = { version = ">=0.14.11", default-features = false }
+stringz = { version = ">=0.1.0", path = "stringz", default-features = false }
 structz-macros = { version = "0.1.0", path = "structz-macros" }
