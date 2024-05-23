@@ -1,6 +1,5 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![deny(missing_docs)]
-
 #![cfg_attr(not(feature = "std"), no_std)]
 
 //! Convert strings to types to make it available as generic parameters.
@@ -105,4 +104,30 @@ where
     fn value() -> String {
         format!("{}{}", C, Other::value())
     }
+}
+
+/// Concatenate multiple typed strings.
+///
+/// # Example
+///
+/// ```
+/// use stringz::*;
+///
+/// type CrateName = ident!(my_crate);
+/// type ModPath = string!("foo::bar");
+/// type StructName = ident!(Amazing);
+/// type FullQualified = concatstr!(CrateName, string!("::"), ModPath, string!("::"), StructName);
+///
+/// fn test_type() -> string!("my_crate::foo::bar::Amazing") {
+///     FullQualified::default()
+/// }
+/// ```
+#[macro_export]
+macro_rules! concatstr {
+    ($t:ty) => {
+        $t
+    };
+    ($t:ty, $($ts:ty),*) => {
+        <$t as ::tuplez::TupleLike>::JoinOutput<$crate::concatstr!($($ts),*)>
+    };
 }
