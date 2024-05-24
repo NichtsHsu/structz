@@ -1,5 +1,5 @@
 use stringz::TypedString;
-use tuplez::search::Search;
+use tuplez::{search::Search, Tuple};
 
 /// A trait that indicate that an anonymous struct contains a certain field.
 ///
@@ -31,10 +31,10 @@ where
     fn take_field(self) -> T;
 }
 
-impl<Field, T, R, Tup> HasField<Field, T, R> for Tup
+impl<Field, T, R, First, Other> HasField<Field, T, R> for Tuple<First, Other>
 where
     Field: TypedString,
-    Tup: Search<(Field, T), R>,
+    Self: Search<(Field, T), R>,
 {
     fn get_field<'a>(&'a self) -> &'a T
     where
