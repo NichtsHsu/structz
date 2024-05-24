@@ -8,6 +8,12 @@ Convert strings to types to make it available as generic parameters.
 cargo add stringz tuplez
 ```
 
+For `no_std` users:
+
+```bash
+cargo add stringz tuplez --no-default-features 
+```
+
 ## Example
 
 ```rust

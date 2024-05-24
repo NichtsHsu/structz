@@ -13,6 +13,12 @@ and [stringz](https://docs.rs/stringz). Therefore, add them all:
 cargo add tuplez stringz structz
 ```
 
+For `no_std` users:
+
+```bash
+cargo add tuplez stringz structz --no-default-features
+```
+
 ### Create & access
 
 ```rust

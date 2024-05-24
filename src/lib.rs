@@ -1,6 +1,5 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![deny(missing_docs)]
-
 #![cfg_attr(not(feature = "std"), no_std)]
 
 //! Anonymous struct implementation in rust.
@@ -14,6 +13,12 @@
 //!
 //! ```bash
 //! cargo add tuplez stringz structz
+//! ```
+//!
+//! For `no_std` users:
+//!
+//! ```bash
+//! cargo add tuplez stringz structz --no-default-features
 //! ```
 //!
 //! ## Create & access
