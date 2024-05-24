@@ -3,6 +3,12 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 //! Convert strings to types to make it available as generic parameters.
+//! 
+//! # Install
+//! 
+//! ```bash
+//! cargo add stringz tuplez
+//! ```
 //!
 //! # Example
 //!
