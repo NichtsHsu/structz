@@ -1,6 +1,6 @@
 [package]
 name = "stringz"
-version = "0.3.5-alpha"
+version = "0.4.0"
 description = "A way to use strings in generic paramters"
 authors.workspace = true
 license.workspace = true
@@ -17,5 +17,5 @@ std = ["tuplez/std"]
 alloc = ["tuplez/alloc"]
 
 [dependencies]
-stringz-macros = { version = "0.2.0-alpha", path = "../stringz-macros" }
-tuplez = { version = "0.14.14-alpha", default-features = false }
+stringz-macros = { version = "0.2.0", path = "../stringz-macros" }
+tuplez = { version = ">=0.14.14", default-features = false }

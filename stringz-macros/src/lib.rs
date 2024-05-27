@@ -36,5 +36,5 @@ pub fn string(input: TokenStream) -> TokenStream {
         .chars()
         .map(|ch| quote!( #path::Character<#ch> ))
         .collect();
-    quote!( #path::__tuplez::__tuple_t![ #( #name ),* ] ).into()
+    quote!( #path::__tuplez::tuple_t![ #( #name ),* ] ).into()
 }
