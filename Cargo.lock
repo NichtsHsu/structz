@@ -48,7 +48,7 @@ dependencies = [
 
 [[package]]
 name = "stringz"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "stringz-macros",
  "tuplez",
