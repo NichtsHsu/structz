@@ -7,13 +7,13 @@
 //! # Install
 //!
 //! ```bash
-//! cargo add stringz tuplez
+//! cargo add stringz
 //! ```
 //!
 //! For `no_std` users:
 //!
 //! ```bash
-//! cargo add stringz tuplez --no-default-features
+//! cargo add stringz --no-default-features
 //! ```
 //!
 //! # Example
@@ -46,6 +46,13 @@
 //! assert_eq!(std::mem::size_of::<string!("no matter how long it is")>(), 0);
 //! ```
 
+extern crate self as stringz;
+
+#[doc(hidden)]
+pub use stringz_macros::{ident as ident_inner, string as string_inner};
+#[doc(hidden)]
+pub use tuplez as __tuplez;
+
 /// Convert a string to a type, the input must be a string literal.
 ///
 /// # Example
@@ -59,7 +66,12 @@
 ///
 /// test_hello::<string!("hello")>();
 /// ```
-pub use stringz_macros::string;
+#[macro_export]
+macro_rules! string {
+    ($($t:tt)*) => {
+        $crate::string_inner!($crate; $($t)*)
+    };
+}
 
 /// Convert a string to a type, the input must be an identifier.
 ///
@@ -74,11 +86,12 @@ pub use stringz_macros::string;
 ///
 /// test_hello::<ident!(hello)>();
 /// ```
-pub use stringz_macros::ident;
-
-use tuplez::{Tuple, Unit};
-
-extern crate self as stringz;
+#[macro_export]
+macro_rules! ident {
+    ($($t:tt)*) => {
+        $crate::ident_inner!($crate; $($t)*)
+    };
+}
 
 #[cfg(all(not(feature = "std"), feature = "alloc"))]
 extern crate alloc;
@@ -101,14 +114,14 @@ pub trait TypedString {
     fn value() -> String;
 }
 
-impl<const C: char> TypedString for Tuple<Character<C>, Unit> {
+impl<const C: char> TypedString for __tuplez::Tuple<Character<C>, __tuplez::Unit> {
     #[cfg(any(feature = "std", feature = "alloc"))]
     fn value() -> String {
         C.to_string()
     }
 }
 
-impl<const C: char, Other> TypedString for Tuple<Character<C>, Other>
+impl<const C: char, Other> TypedString for __tuplez::Tuple<Character<C>, Other>
 where
     Other: TypedString,
 {
@@ -140,6 +153,6 @@ macro_rules! concatstr {
         $t
     };
     ($t:ty, $($ts:ty),*) => {
-        <$t as ::tuplez::TupleLike>::JoinOutput<$crate::concatstr!($($ts),*)>
+        <$t as $crate::__tuplez::TupleLike>::JoinOutput<$crate::concatstr!($($ts),*)>
     };
 }

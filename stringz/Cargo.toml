@@ -13,9 +13,9 @@ categories = ["data-structures", "no-std", "no-std::no-alloc"]
 
 [features]
 default = ["std"]
-std = []
-alloc = []
+std = ["tuplez/std"]
+alloc = ["tuplez/alloc"]
 
 [dependencies]
 stringz-macros = { version = "0.1.2", path = "../stringz-macros" }
-tuplez = { version = ">=0.8.0", default-features = false }
+tuplez = { version = "0.14.14-alpha", default-features = false }

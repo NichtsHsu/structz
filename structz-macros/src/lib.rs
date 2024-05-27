@@ -8,29 +8,35 @@ use parse::*;
 
 #[proc_macro]
 pub fn stru(input: TokenStream) -> TokenStream {
-    let AnonymousStruct(input) = parse_macro_input!(input as AnonymousStruct);
+    let ReExportStructz {
+        path,
+        other: AnonymousStruct(input),
+    } = parse_macro_input!(input as ReExportStructz<AnonymousStruct>);
     let fields: Vec<_> = input
         .into_iter()
         .map(|(ident, expr)| match expr {
-            Some(expr) => quote! { (<::stringz::ident!(#ident)>::default(), #expr) },
-            None => quote! { (<::stringz::ident!(#ident)>::default(), #ident) },
+            Some(expr) => quote! { (<#path::ident!(#ident)>::default(), #expr) },
+            None => quote! { (<#path::ident!(#ident)>::default(), #ident) },
         })
         .collect();
     quote! {
-        ::tuplez::tuple!(#(#fields),*)
+        #path::__tuplez::tuple!(#(#fields),*)
     }
     .into()
 }
 
 #[proc_macro]
 pub fn stru_t(input: TokenStream) -> TokenStream {
-    let AnonymousStructType(input) = parse_macro_input!(input as AnonymousStructType);
+    let ReExportStructz {
+        path,
+        other: AnonymousStructType(input),
+    } = parse_macro_input!(input as ReExportStructz<AnonymousStructType>);
     let fields: Vec<_> = input
         .into_iter()
-        .map(|(ident, ty)| quote! { (::stringz::ident!(#ident), #ty) })
+        .map(|(ident, ty)| quote! { (#path::ident!(#ident), #ty) })
         .collect();
     quote! {
-        ::tuplez::tuple_t!(#(#fields),*)
+        #path::__tuplez::tuple_t!(#(#fields),*)
     }
     .into()
 }
@@ -58,7 +64,7 @@ pub fn named_args(_: TokenStream, item: TokenStream) -> TokenStream {
     args.sort_by(|x, y| x.0.ident.cmp(&y.0.ident));
     let (idents, tys): (Vec<syn::PatIdent>, Vec<Box<syn::Type>>) = args.into_iter().unzip();
     let struct_type: syn::Type = parse_quote! {
-        structz::stru_t! { #(#idents: #tys),* }
+        ::structz::stru_t! { #(#idents: #tys),* }
     };
     let mut inputs = Punctuated::new();
     if let Some(arg) = has_self {
@@ -76,12 +82,13 @@ pub fn named_args(_: TokenStream, item: TokenStream) -> TokenStream {
         let ident = ident.ident;
         unpack.push((
             parse_quote! { #ident },
-            parse_quote! { ::stringz::ident!(#ident) },
+            parse_quote! { ::structz::ident!(#ident) },
         ))
     }
     let (pat, ident_tys): (Vec<syn::Pat>, Vec<syn::Type>) = unpack.into_iter().unzip();
-    let pat: syn::Pat = parse_quote! { ::tuplez::tuple_pat!( #( (_, #pat) ),* )};
-    let ident_tys: syn::Type = parse_quote! { ::tuplez::tuple_t!( #( (#ident_tys, #tys) ),* )};
+    let pat: syn::Pat = parse_quote! { ::structz::__tuplez::tuple_pat!( #( (_, #pat) ),* )};
+    let ident_tys: syn::Type =
+        parse_quote! { ::structz::__tuplez::tuple_t!( #( (#ident_tys, #tys) ),* )};
     let unpack: syn::Stmt = parse_quote! { let #pat: #ident_tys = structz_s; };
     input.block.stmts.insert(0, unpack);
     quote!(#input).into()

@@ -1,5 +1,5 @@
-use stringz::TypedString;
-use tuplez::{search::Search, Tuple};
+use crate::TypedString;
+use crate::__tuplez::{search::Search, Tuple};
 
 /// A trait that indicate that an anonymous struct contains a certain field.
 ///

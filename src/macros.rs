@@ -46,15 +46,15 @@
 #[macro_export]
 macro_rules! field {
     ($s:ident . $f:ident) => {
-        ::structz::HasField::<::stringz::ident!($f), _, _>::take_field($s)
+        $crate::HasField::<$crate::ident!($f), _, _>::take_field($s)
     };
     (& $s:ident . $f:ident) => {{
-        use ::structz::__GetFieldHelper;
-        $s.__get_field_helper::<::stringz::ident!($f), _, _>()
+        use $crate::__GetFieldHelper;
+        $s.__get_field_helper::<$crate::ident!($f), _, _>()
     }};
     (&mut $s:ident . $f:ident) => {{
-        use ::structz::__GetFieldHelper;
-        $s.__get_field_mut_helper::<::stringz::ident!($f), _, _>()
+        use $crate::__GetFieldHelper;
+        $s.__get_field_mut_helper::<$crate::ident!($f), _, _>()
     }};
 }
 
@@ -74,8 +74,8 @@ macro_rules! field {
 #[macro_export]
 macro_rules! as_ref {
     ($e:expr) => {{
-        use ::tuplez::TupleLike;
-        $e.as_ref().foreach(::tuplez::mapper! {
+        use $crate::__tuplez::TupleLike;
+        $e.as_ref().foreach($crate::__tuplez::mapper! {
             <'a, T: Copy, U> | x: &'a (T, U) | -> (T, &'a U) {
                 (x.0, &x.1)
             }
@@ -100,11 +100,77 @@ macro_rules! as_ref {
 #[macro_export]
 macro_rules! as_mut {
     ($e:expr) => {{
-        use ::tuplez::TupleLike;
-        $e.as_mut().foreach(::tuplez::mapper! {
+        use $crate::__tuplez::TupleLike;
+        $e.as_mut().foreach($crate::__tuplez::mapper! {
             <'a, T: Copy, U> | x: &'a mut (T, U) | -> (T, &'a mut U) {
                 (x.0, &mut x.1)
             }
         })
     }};
+}
+
+/// Create anonymous struct object.
+///
+/// Just like how an object of named struct is created, you declare a field name,
+/// followed by a colon, and then its value. Finally, you separate each field with commas.
+///
+/// ```
+/// use structz::*;
+///
+/// let son_age = 12;
+/// let father = stru! {
+///     name: "John",
+///     age: son_age + 25,
+/// };
+/// assert_eq!(field!(father.age), 37);
+/// ```
+///
+/// When field's value is omitted, it captures the value of the variable with the same name
+/// in the context.
+///
+/// ```
+/// use structz::*;
+///
+/// let name = "Smith";
+/// let person = stru! {
+///     name,
+///     age: 30,
+/// };
+/// assert_eq!(field!(person.name), "Smith");
+/// ```
+#[macro_export]
+macro_rules! stru {
+    ($($t:tt)*) => {
+        $crate::stru_inner!($crate; $($t)*)
+    };
+}
+
+/// Generate anonymous struct type.
+///
+/// Sometimes you may need to know the exact type of an anonymous struct object.
+///
+/// Just like how a named struct type is declared, you declare a field name,
+/// followed by a colon, and then its type. Finally, you separate each field with commas.
+///
+/// ```
+/// use structz::*;
+///
+/// type Person = stru_t! {
+///     name: &'static str,
+///     age: u8,
+/// };
+///
+/// let person: Person = stru! {
+///     age: 15,
+///     name: "Alice",
+/// };
+/// ```
+///
+/// For cases where the anonymous structs are used as function arguments, it is recommended
+/// that you use the [`macro@named_args`] instead.
+#[macro_export]
+macro_rules! stru_t {
+    ($($t:tt)*) => {
+        $crate::stru_t_inner!($crate; $($t)*)
+    };
 }

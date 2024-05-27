@@ -1,5 +1,20 @@
 use syn::{parse::Parse, Expr, Ident, Token, Type};
 
+pub struct ReExportStructz<T: syn::parse::Parse> {
+    pub path: syn::Path,
+    pub other: T,
+}
+
+impl<T: syn::parse::Parse> syn::parse::Parse for ReExportStructz<T> {
+    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+        let path = input.parse()?;
+        let _: syn::Token![;] = input.parse()?;
+        let other = input.parse()?;
+        Ok(Self { path, other })
+    }
+}
+
+
 pub struct AnonymousStruct(pub Vec<(Ident, Option<Expr>)>);
 
 impl Parse for AnonymousStruct {

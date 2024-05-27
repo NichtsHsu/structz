@@ -1,6 +1,6 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![deny(missing_docs)]
-#![cfg_attr(not(feature = "std"), no_std)]
+#![no_std]
 
 //! Anonymous struct implementation in rust.
 //!
@@ -8,17 +8,8 @@
 //!
 //! ## Install
 //!
-//! Basically, structz just defines macros, and uses types from [tuplez] and [stringz].
-//! Therefore, add them all:
-//!
 //! ```bash
-//! cargo add tuplez stringz structz
-//! ```
-//!
-//! For `no_std` users:
-//!
-//! ```bash
-//! cargo add tuplez stringz structz --no-default-features
+//! cargo add structz
 //! ```
 //!
 //! ## Create & access
@@ -98,8 +89,8 @@
 //! print_person(person);
 //! ```
 //!
-//! With the [`subseq()`](tuplez::TupleLike::subseq()) method by [tuplez](https://docs.rs/tuplez),
-//! you can get a sub-struct of the anonymous struct:
+//! With the [`subseq()`](https://docs.rs/tuplez/latest/tuplez/trait.TupleLike.html#method.subseq)
+//! method by [tuplez](https://docs.rs/tuplez), you can get a sub-struct of the anonymous struct:
 //!
 //! ```
 //! use structz::*;
@@ -136,7 +127,6 @@
 //! ## As generic type
 //!
 //! ```
-//! use stringz::ident;
 //! use structz::*;
 //!
 //! // `R1` and `R2` are "magic", used to indicate the position of the field in the structs,
@@ -205,61 +195,16 @@ pub use has_field::*;
 
 extern crate self as structz;
 
-/// Create anonymous struct object.
-///
-/// Just like how an object of named struct is created, you declare a field name,
-/// followed by a colon, and then its value. Finally, you separate each field with commas.
-///
-/// ```
-/// use structz::*;
-///
-/// let son_age = 12;
-/// let father = stru! {
-///     name: "John",
-///     age: son_age + 25,
-/// };
-/// assert_eq!(field!(father.age), 37);
-/// ```
-///
-/// When field's value is omitted, it captures the value of the variable with the same name
-/// in the context.
-///
-/// ```
-/// use structz::*;
-///
-/// let name = "Smith";
-/// let person = stru! {
-///     name,
-///     age: 30,
-/// };
-/// assert_eq!(field!(person.name), "Smith");
-/// ```
-pub use structz_macros::stru;
+#[doc(hidden)]
+pub use stringz as __stringz;
+#[doc(hidden)]
+pub use stringz::__tuplez;
 
-/// Generate anonymous struct type.
-///
-/// Sometimes you may need to know the exact type of an anonymous struct object.
-///
-/// Just like how a named struct type is declared, you declare a field name,
-/// followed by a colon, and then its type. Finally, you separate each field with commas.
-///
-/// ```
-/// use structz::*;
-///
-/// type Person = stru_t! {
-///     name: &'static str,
-///     age: u8,
-/// };
-///
-/// let person: Person = stru! {
-///     age: 15,
-///     name: "Alice",
-/// };
-/// ```
-///
-/// For cases where the anonymous structs are used as function arguments, it is recommended
-/// that you use the [`macro@named_args`] instead.
-pub use structz_macros::stru_t;
+#[doc(no_inline)]
+pub use stringz::{ident, TypedString};
+
+#[doc(hidden)]
+pub use structz_macros::{stru as stru_inner, stru_t as stru_t_inner};
 
 /// Change the function's arguments to an anonymous struct object and unpack it.
 ///

@@ -21,12 +21,9 @@ documentation = "https://docs.rs/structz"
 keywords = ["struct", "anonymous", "named-tuple", "named-arguments", "no-std"]
 categories = ["data-structures", "rust-patterns", "no-std", "no-std::no-alloc"]
 
-[features]
-default = []
-std = ["tuplez/std", "stringz/std"]
-alloc = ["tuplez/alloc", "stringz/alloc"]
-
 [dependencies]
-tuplez = { version = ">=0.14.11", default-features = false }
-stringz = { version = ">=0.3.1", path = "stringz", default-features = false }
+stringz = { version = ">=0.3.4", path = "stringz", default-features = false }
 structz-macros = { version = "0.1.0", path = "structz-macros" }
+
+[dev-dependencies]
+tuplez = { version = "=0.14.14-alpha", default-features = false }
