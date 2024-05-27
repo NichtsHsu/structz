@@ -68,8 +68,8 @@ pub use tuplez as __tuplez;
 /// ```
 #[macro_export]
 macro_rules! string {
-    ($($t:tt)*) => {
-        $crate::string_inner!($crate; $($t)*)
+    ($s:literal) => {
+        $crate::string_inner!($crate; $s)
     };
 }
 
@@ -88,8 +88,8 @@ macro_rules! string {
 /// ```
 #[macro_export]
 macro_rules! ident {
-    ($($t:tt)*) => {
-        $crate::ident_inner!($crate; $($t)*)
+    ($i:ident) => {
+        $crate::ident_inner!($crate; $i)
     };
 }
 
