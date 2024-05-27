@@ -5,13 +5,13 @@ Convert strings to types to make it available as generic parameters.
 ## Install
 
 ```bash
-cargo add stringz tuplez
+cargo add stringz
 ```
 
 For `no_std` users:
 
 ```bash
-cargo add stringz tuplez --no-default-features 
+cargo add stringz --no-default-features 
 ```
 
 ## Example
