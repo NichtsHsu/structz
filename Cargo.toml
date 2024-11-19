@@ -26,4 +26,4 @@ stringz = { version = ">=0.4.0", path = "stringz", default-features = false }
 structz-macros = { version = "0.2.0", path = "structz-macros" }
 
 [dev-dependencies]
-tuplez = { version = "0.14.14", default-features = false }
+tuplez = { version = ">=0.14.14", default-features = false }

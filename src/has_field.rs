@@ -8,7 +8,7 @@ use crate::__tuplez::{search::Search, Tuple};
 /// * `Field`: Typed field name, see [`stringz::ident!`](https://docs.rs/stringz/0.1.2/stringz/macro.ident.html).
 /// * `T`: The type of data carried by the field.
 /// * `R`: Type used to indicate the position of the field in the struct.
-/// Usually automatically inferred by Rust.
+///   Usually automatically inferred by Rust.
 ///
 /// # Example
 ///
