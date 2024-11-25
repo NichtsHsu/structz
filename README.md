@@ -125,7 +125,6 @@ print_person(empty.subseq());   // Of course it is a sub-struct of itself
 ### As generic type
 
 ```rust
-use stringz::ident;
 use structz::*;
 
 // `R1` and `R2` are "magic", used to indicate the position of the field in the structs,
