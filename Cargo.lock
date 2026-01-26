@@ -86,9 +86,9 @@ dependencies = [
 
 [[package]]
 name = "tuplez"
-version = "0.14.16"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a4b1a9cb63c7b94a9ef175aedb837fb6dc2abbcaa183e4a8a8e975574d1c683"
+checksum = "bd29b7e11b0f06c302b5d0341b51e7576f2a08f7d53ac1e1ad8c5dacd90e5ada"
 dependencies = [
  "serde",
  "tuplez-macros",
@@ -96,9 +96,9 @@ dependencies = [
 
 [[package]]
 name = "tuplez-macros"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2a09a698b46cc82ab06a06b2ae2dd78e495c58c2c95c018309b7be30907d119e"
+checksum = "5d45cd0eb5f0047675b18dd941eff8e89f20f79830a130a449ae524e97bd4c6c"
 dependencies = [
  "proc-macro2",
  "quote",
